@@ -13,7 +13,7 @@ class Basket extends Migration
      */
     public function up()
     {
-        Schema::create('order', function (Blueprint $table) {
+        Schema::create('basket', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_plate');
             $table->integer('id_user');
