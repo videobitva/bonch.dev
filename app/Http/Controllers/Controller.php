@@ -10,4 +10,11 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected function getMessage($message, $redirect = false) {
+        return View::make('message', array(
+            'message' => $message,
+            'redirect' => $redirect,
+        ));
+    }
 }
