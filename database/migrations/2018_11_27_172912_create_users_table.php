@@ -18,10 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->boolean('isAdmin')->default(0);
-            $table->boolean('isActivated');
-            $table->string('activationCode');
-            $table->decimal('bonus');
+            $table->boolean('isActivated')->default(0);
+            $table->decimal('bonus')->default(0);
             $table->rememberToken();
+            $table->timestamps();
         });
     }
 
