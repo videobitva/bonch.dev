@@ -17,11 +17,11 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('password', 60);
-            $table->boolean('isActive');
+            $table->boolean('isAdmin')->default(0);
+            $table->boolean('isActivated');
             $table->string('activationCode');
             $table->decimal('bonus');
             $table->rememberToken();
-            $table->timestamps();
         });
     }
 
