@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\Plate;
 use Illuminate\Http\Request;
 use DB;
 use function Psy\debug;
 
 class CartController extends Controller
 {
-    public function add(Request $request)
+    /*public function add(Request $request)
     {
         $id = $request->only('id');
         foreach($id as $result) {
@@ -28,9 +29,52 @@ class CartController extends Controller
         {
             return false;
         }
-        */
 
+
+    }*/
+
+    public function actionAdd($id)
+    {
+        // Добавляем товар в корзину
+        Cart::addProduct($id);
+
+        // Возвращаем пользователя на страницу
+        $referrer = $_SERVER['HTTP_REFERER'];
+        header("Location: $referrer");
     }
+
+    public function actionDelete($id)
+    {
+        // Удалить товар из корзины
+        // Возвращаем пользователя на страницу
+        header("Location: /cart/");
+    }
+
+    public function actionIndex()
+    {
+        /*$categories = array();
+        $categories = Category::getCategoriesList();
+
+        $productsInCart = false;*/
+
+        // Получим данные из корзины
+        $productsInCart = Cart::getProducts();
+
+        if ($productsInCart) {
+            // Получаем полную информацию о товарах для списка
+            $productsIds = array_keys($productsInCart);
+            $products = Plate::getProdustsByIds($productsIds);
+
+            // Получаем общую стоимость товаров
+            $totalPrice = Cart::getTotalPrice($products);
+        }
+
+        require_once(ROOT . '/views/cart/index.php');
+
+        return true;
+    }
+
+
 
     public function view(){
         return view('test');
