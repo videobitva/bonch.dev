@@ -22,3 +22,7 @@ Route::group(['middleware' => ['jwt.auth']], function() {
         return response()->json(['foo'=>'bar']);
     });
 });
+
+Route::group(['middleware' => ['jwt.auth'], 'prefix' => 'order'], function() {
+   Route::get('add', 'CartController@add');
+});
