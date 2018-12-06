@@ -35,7 +35,7 @@ Note: After doing this user gets Email for account verification. Until it's not 
 
 . Logging in
 * URL: /api/login
-* Data: {login:"login@email.com",password:"password"}
+* Data: {login:"example@email.com",password:"password"}
 * Type: Post
 This will return you JSON response with info about success/fail, and in case of success token for passing through the JWT Authentication.
 
