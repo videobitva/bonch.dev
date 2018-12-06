@@ -110,10 +110,10 @@ class AuthController extends Controller
             return response()->json(['success' => false, 'error' => 'Failed to login, please try again.'], 500);
         }
         // all good so return the token
-        /*$userID = DB::selectOne('select id from users where email = ?',[$request->only('email')['email']]);
-        $request->session()->put('user_id', $userID);
+        $userID = DB::selectOne('select id from users where email = ?',[$request->only('email')['email']]);
+        /*$request->session()->put('user_id', $userID);
         $request->session()->put('token', $token);*/
-        return response()->json(['success' => true, 'data'=> ['token' => $token]/*,'session'=>session()->get('token')*/], 200);
+        return response()->json(['success' => true, 'data'=> ['token' => $token, 'id'=>$userID]/*,'session'=>session()->get('token')*/], 200);
     }
 
     /*
