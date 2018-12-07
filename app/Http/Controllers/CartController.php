@@ -44,26 +44,31 @@ class CartController extends Controller
 
         $counter = 0;
 
+        $not_found = false;
+
         if ($request->session()->has('plates')){
+
             foreach ($request->session()->get('plates') as $arr){
 
                 $currentID = $arr['id_plate'];
                 $currentCount = $arr['count'];
 
                 if ($currentID == $id_plate){
-
                     $route = 'plates.'.$counter.'.count';
                     $currentCount = $currentCount + 1;
                     $request->session()->put($route,$currentCount);
-
+                    $not_found = false;
                 }
-                elseif($counter + 1 == $count){
-                        $template['id_plate'] = $id_plate;
-                        $template['count'] = 1;
-                        $request->session()->push('plates', $template);
+                else{
+                    $not_found = true;
                 }
-
                 $counter = $counter + 1;
+            }
+
+            if ($not_found){
+                $template['id_plate'] = $id_plate;
+                $template['count'] = 1;
+                $request->session()->push('plates', $template);
             }
         }
         else{
