@@ -26,3 +26,4 @@ Route::group(['middleware' => ['jwt.auth']], function() {
 Route::group(['middleware' => ['jwt.auth'], 'prefix' => 'order'], function() {
    Route::get('add', 'CartController@add');
 });
+Route::get('/cart/index', 'CartController@ActionIndex');
