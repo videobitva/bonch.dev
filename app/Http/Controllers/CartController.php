@@ -40,11 +40,9 @@ class CartController extends Controller
 
         $template = array('id_plate' => null, 'count' => null);
 
-        $count = count($request->session()->get('plates'));
-
         $counter = 0;
 
-        $not_found = false;
+        $success = false;
 
         if ($request->session()->has('plates')){
 
@@ -53,19 +51,17 @@ class CartController extends Controller
                 $currentID = $arr['id_plate'];
                 $currentCount = $arr['count'];
 
-                if ($currentID == $id_plate){
+                if ($id_plate == $currentID){
                     $route = 'plates.'.$counter.'.count';
-                    $currentCount = $currentCount + 1;
-                    $request->session()->put($route,$currentCount);
-                    $not_found = false;
+                    $currentCount += 1;
+                    $request->session()->put($route, $currentCount);
+                    $success = true;
                 }
-                else{
-                    $not_found = true;
-                }
-                $counter = $counter + 1;
+
+                $counter += 1;
             }
 
-            if ($not_found){
+            if ($success == false){
                 $template['id_plate'] = $id_plate;
                 $template['count'] = 1;
                 $request->session()->push('plates', $template);
@@ -76,6 +72,7 @@ class CartController extends Controller
             $template['count'] = 1;
             $request->session()->push('plates', $template);
         }
+
         $response = $request->session()->get('plates');
         return response()->json($response);
     }
