@@ -6,6 +6,7 @@ use App\Cart;
 use App\Plate;
 use Illuminate\Http\Request;
 use DB;
+use Session;
 use function Psy\debug;
 
 class CartController extends Controller
@@ -35,16 +36,43 @@ class CartController extends Controller
 
     public function actionAdd(Request $request)
     {
-        $id_plate = $request['id_plate'];
-        // Добавляем товар в корзину
-        Cart::addProductMeow($id_plate);
+        $id_plate = $request->get('id_plate');
 
-        // Возвращаем пользователя на страницу/
-        /*
-        $referrer = $_SERVER['HTTP_REFERER'];
-        header("Location: $referrer");
-        */
-         return response()->json($_SESSION['plates']);
+        $template = array('id_plate' => null, 'count' => null);
+
+        $count = count($request->session()->get('plates'));
+
+        $counter = 0;
+
+        if ($request->session()->has('plates')){
+            foreach ($request->session()->get('plates') as $arr){
+
+                $currentID = $arr['id_plate'];
+                $currentCount = $arr['count'];
+
+                if ($currentID == $id_plate){
+
+                    $route = 'plates.'.$counter.'.count';
+                    $currentCount = $currentCount + 1;
+                    $request->session()->put($route,$currentCount);
+
+                }
+                elseif($counter + 1 == $count){
+                        $template['id_plate'] = $id_plate;
+                        $template['count'] = 1;
+                        $request->session()->push('plates', $template);
+                }
+
+                $counter = $counter + 1;
+            }
+        }
+        else{
+            $template['id_plate'] = $id_plate;
+            $template['count'] = 1;
+            $request->session()->push('plates', $template);
+        }
+        $response = $request->session()->get('plates');
+        return response()->json($response);
     }
 
     public function actionDelete($id)

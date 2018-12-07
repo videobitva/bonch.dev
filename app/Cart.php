@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Session;
 
 class Cart extends Model
 {
@@ -10,61 +11,32 @@ class Cart extends Model
         echo 'Works... maybe';
     }*/
 
-    public static function addProduct($id)
-    {
-        $id = intval($id);
-
-        // Пустой массив для товаров в корзине
-        $productsInCart = array();
-
-        // Если в корзине уже есть товары (они хранятся в сессии)
-        if (isset($_SESSION['plates'])) {
-            // То заполним наш массив товарами
-            $productsInCart = $_SESSION['plates'];
-        }
-
-        // Если товар есть в корзине, но был добавлен еще раз, увеличим количество
-        if (array_key_exists($id, $productsInCart)) {
-            $productsInCart[$id] ++;
-        } else {
-            // Добавляем нового товара в корзину
-            $productsInCart[$id] = 1;
-        }
-
-        $_SESSION['plates'] = $id;
-
-        return self::countItems();
-    }
-
-    public static function addProductMeow($id_plate)
+   /* public static function addProduct($id_plate, $action)
     {
         $id_plate = intval($id_plate);
 
         // Пустой массив для товаров в корзине
         $productsInCart = array('id_plate' => null, 'count' => null);
 
-
-        // Если в корзине уже есть товары (они хранятся в сессии)
-        if (isset($_SESSION['plates'])) {
-            // То заполним наш массив товарами
-            $productsInCart = $_SESSION['plates'];
-        }
-
-        // Если товар есть в корзине, но был добавлен еще раз, увеличим количество
-        if ($productsInCart['id_plate'] != null) {
+        if ($action == 'addOld') {
+            $productsInCart = session()->get('plates');
             $productsInCart['count']+=1;
-
-        } else {
-            // Добавляем нового товара в корзину
+            session()->put(['plates'=>'id_plate'], $productsInCart['id_plate']);
+            session()->put(['plates'=>'count'], $productsInCart['count']);
+        }
+        elseif($action == 'addNew'){
+            $productsInCart = session()->get('plates');
             $productsInCart['id_plate'] = $id_plate;
             $productsInCart['count'] = 1;
+            session()->push(['plates']['id_plate'], $productsInCart['id_plate']);
+            session()->push(['plates']['count'], $productsInCart['count']);
         }
-        $ses = $_SESSION['plates'];
-        array_push($ses,$productsInCart);
-        $_SESSION['plates'] = $ses;
-        return self::countItems();
-    }
 
+        /*return self::countItems();
+        $plates = session()->get('plates');
+        return $plates;
+    }
+    */
     /**
      * Подсчет количество товаров в корзине (в сессии)
      * @return int
