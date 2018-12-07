@@ -31,8 +31,37 @@ class Cart extends Model
             $productsInCart[$id] = 1;
         }
 
-        $_SESSION['plates'] = $productsInCart;
+        $_SESSION['plates'] = $id;
 
+        return self::countItems();
+    }
+
+    public static function addProductMeow($id_plate)
+    {
+        $id_plate = intval($id_plate);
+
+        // Пустой массив для товаров в корзине
+        $productsInCart = array('id_plate' => null, 'count' => null);
+
+
+        // Если в корзине уже есть товары (они хранятся в сессии)
+        if (isset($_SESSION['plates'])) {
+            // То заполним наш массив товарами
+            $productsInCart = $_SESSION['plates'];
+        }
+
+        // Если товар есть в корзине, но был добавлен еще раз, увеличим количество
+        if ($productsInCart['id_plate'] != null) {
+            $productsInCart['count']+=1;
+
+        } else {
+            // Добавляем нового товара в корзину
+            $productsInCart['id_plate'] = $id_plate;
+            $productsInCart['count'] = 1;
+        }
+        $ses = $_SESSION['plates'];
+        array_push($ses,$productsInCart);
+        $_SESSION['plates'] = $ses;
         return self::countItems();
     }
 
@@ -43,11 +72,13 @@ class Cart extends Model
     public static function countItems()
     {
         if (isset($_SESSION['plates'])) {
-            $count = 0;
-            foreach ($_SESSION['plates'] as $id => $quantity) {
-                $count = $count + $quantity;
+            $count = 0;/*
+            foreach ($_SESSION['plates']['count'] as $value) {
+                $count = $count + $value;
             }
             return $count;
+*/
+            return $_SESSION['plates']['count'];
         } else {
             return 0;
         }

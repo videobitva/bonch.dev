@@ -15,3 +15,7 @@ Route::get('user/verify/{verification_code}', 'AuthController@verifyUser');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.request');
 Route::post('password/reset', 'Auth\ResetPasswordController@postReset')->name('password.reset');
 Route::get('/test', 'CartController@view');#->middleware('jwt.auth');
+
+Route::group(['middleware' => ['web']], function() {
+    Route::get('/cart/add', 'CartController@actionAdd');
+});

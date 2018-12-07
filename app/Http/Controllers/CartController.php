@@ -33,14 +33,18 @@ class CartController extends Controller
 
     }*/
 
-    public function actionAdd($id)
+    public function actionAdd(Request $request)
     {
+        $id_plate = $request['id_plate'];
         // Добавляем товар в корзину
-        Cart::addProduct($id);
+        Cart::addProductMeow($id_plate);
 
-        // Возвращаем пользователя на страницу
+        // Возвращаем пользователя на страницу/
+        /*
         $referrer = $_SERVER['HTTP_REFERER'];
         header("Location: $referrer");
+        */
+         return response()->json($_SESSION['plates']);
     }
 
     public function actionDelete($id)
