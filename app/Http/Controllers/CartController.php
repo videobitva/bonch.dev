@@ -143,7 +143,7 @@ class CartController extends Controller
             $product['price'] = DB::table('plates')
                 ->select('price')
                 ->where('id', '=', $arr['id_plate'])
-                ->get('price');
+                ->get();
 
             array_push($result['products'], $product);
 
