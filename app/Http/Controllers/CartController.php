@@ -11,29 +11,6 @@ use function Psy\debug;
 
 class CartController extends Controller
 {
-    /*public function add(Request $request)
-    {
-        $id = $request->only('id');
-        foreach($id as $result) {
-            echo $result.'<br>';
-        }
-        session()->token();
-        /*try
-        {
-            $product = DB::selectOne('select * from plates where id = ?',[$id]);
-            $session = $request->session()->get('id');
-            $cart = new Cart();
-            $cart->addToCart($product);
-
-        }
-        catch(\PDOException $exception)
-        {
-            return false;
-        }
-
-
-    }*/
-
     public function actionAdd(Request $request)
     {
         $id_plate = $request->get('id_plate');
@@ -77,38 +54,143 @@ class CartController extends Controller
         return response()->json($response);
     }
 
-    public function actionDelete($id)
+    public function actionDelete(Request $request)
     {
         // Удалить товар из корзины
-        // Возвращаем пользователя на страницу
-        header("Location: /cart/");
-    }
 
-    public function actionIndex()
-    {
-        /*$categories = array();
-        $categories = Category::getCategoriesList();
+        $id_plate = $request->get('id_plate');
 
-        $productsInCart = false;*/
+        $count = 0;
 
-        // Получим данные из корзины
-        $productsInCart = Cart::getProducts();
+        $success = false;
 
-        if ($productsInCart) {
-            // Получаем полную информацию о товарах для списка
-            $productsIds = array_keys($productsInCart);
-            $products = Plate::getProdustsByIds($productsIds);
-
-            // Получаем общую стоимость товаров
-            $totalPrice = Cart::getTotalPrice($products);
+        foreach ($request->session()->get('plate') as $arr){
+            if ($arr['id_plate'] == $id_plate){
+                $request->session()->forget('plates.'.$count);
+                $success = true;
+            }
+            $count += 1;
         }
 
-        require_once(ROOT . '/views/cart/index.php');
+        if ($success){
+            return response()->json('ok');
+        }
+        else{
+            return response()->json('error');
+        }
 
-        return true;
+    }
+
+    public function actionIndex(Request $request)
+    {
+        $result = array(
+            'products' => null,
+            'total' => null
+        );
+        $product = array(
+            'name' => null,
+            'singer' => null, //
+            'genre' => null, //
+            'country' => null, //
+            'state' => null, //
+            'price' => null,
+        );
+
+        //Needs User's ID from /api/login
+
+        $bonus = DB::table('users')->select('bonus')->where('id', $request->get('id'))->get();
+        $use_bonus = $request->get('use_bonus', false);
+        $count = 0;
+        $pre_total = 0;
+        foreach ($request->session()->get('plates') as $arr){
+
+            $product['name'] = DB::table('plates')
+                ->select('name')
+                ->where('id', $arr['id_plate'])
+                ->get();
+
+            $product['singer'] = DB::table('plates')
+                ->join('singer','plates.id_singer','=','singer.id')
+                ->select('name')
+                ->where('id', $arr['id_plate'])
+                ->get();
+
+            $product['genre'] = DB::table('plates')
+                ->join('genre','plates.id_genre','=','genre.id')
+                ->select('name')
+                ->where('id', $arr['id_plate'])
+                ->get();
+
+            $product['country'] = DB::table('plates')
+                ->join('country','plates.id_country','=','country.id')
+                ->select('name')
+                ->where('id', $arr['id_plate'])
+                ->get();
+
+            $product['state'] = DB::table('plates')
+                ->join('state','plates.id_state','=','state.id')
+                ->select('name')
+                ->where('id', $arr['id_plate'])
+                ->get();
+
+            $product['price'] = DB::table('plates')
+                ->select('price')
+                ->where('id', $arr['id_plate'])
+                ->get('price');
+
+            array_push($result['products'], $product);
+
+            $pre_total = $pre_total + $product['price'];
+            $count += 1;
+        }
+
+        if($use_bonus){
+            $result['total'] = $pre_total - $bonus;
+            DB::table('users')->where('id', $request->get('id'))->update(['bonus' => 0]);
+        }
+        return response()->json($result);
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function actionCount(Request $request){
+        // Получить количество товаров
+
+        $total = 0;
+
+        foreach ($request->session()->get('plates') as $arr){
+            $total = $total + $arr['count'];
+        }
+
+        $data = array('total' => $total);
+
+        return response()->json($data);
+    }
 
     public function view(){
         return view('test');
