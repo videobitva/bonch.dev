@@ -97,7 +97,7 @@ class CartController extends Controller
             'price' => null,
         );
 
-        //Needs User's ID from /api/login
+        //Needs User's ID from /api/login; Needs to know if bonuses are used;
 
         $bonus = DB::table('users')->select('bonus')->where('id', $request->get('id'))->get();
         $use_bonus = $request->get('use_bonus', false);
@@ -154,6 +154,10 @@ class CartController extends Controller
         if($use_bonus){
             $result['total'] = $pre_total - $bonus;
             DB::table('users')->where('id', $request->get('id'))->update(['bonus' => 0]);
+        }
+        else{
+            $result['total'] = $pre_total;
+            DB::table('users')->where('id', $request->get('id'))->update(['bonus' => $bonus + $pre_total * 0,1]);
         }
         return response()->json($result);
     }

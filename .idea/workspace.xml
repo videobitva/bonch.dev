@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bad0bcb-35a9-4c46-a63c-cb2741e73f8d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Cart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -105,8 +102,8 @@
       <file leaf-file-name="CartController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CartController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="100" column="86" selection-start-line="100" selection-start-column="86" selection-end-line="100" selection-end-column="86" />
+            <state relative-caret-position="-647">
+              <caret line="99" column="77" selection-start-line="99" selection-start-column="77" selection-end-line="99" selection-end-column="77" />
               <folding>
                 <element signature="e#40#53#0#PHP" expanded="true" />
               </folding>
@@ -116,31 +113,6 @@
       </file>
       <file leaf-file-name="state" pinned="false" current-in-tab="false">
         <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/state">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="singer" pinned="false" current-in-tab="false">
-        <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/singer">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PlateController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PlateController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-494" />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plates" pinned="false" current-in-tab="false">
-        <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/plates">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
@@ -571,11 +543,39 @@
       <option name="project" value="LOCAL" />
       <updated>1544221399773</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="actionIndex Completed!">
+      <created>1544228326180</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1544228326180</updated>
+    </task>
+    <task id="LOCAL-00008" summary="actionIndex Completed!">
+      <created>1544228446727</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1544228446727</updated>
+    </task>
+    <task id="LOCAL-00009" summary="actionIndex Completed!">
+      <created>1544229835430</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1544229835430</updated>
+    </task>
+    <task id="LOCAL-00010" summary="actionIndex Completed!">
+      <created>1544229890925</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1544229890925</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63837000" />
+    <option name="totallyTimeSpent" value="65755000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -596,11 +596,11 @@
       <window_info anchor="bottom" id="Database Changes" order="7" sideWeight="0.49893504" weight="0.32963374" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49520767" weight="0.32779622" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49520767" visible="true" weight="0.16611296" />
-      <window_info anchor="bottom" id="Database Console" order="12" sideWeight="0.49840257" weight="0.372919" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49520767" weight="0.16611296" />
+      <window_info anchor="bottom" id="Database Console" order="12" sideWeight="0.49840257" weight="0.37209302" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18690096" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.04952077" />
+      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.16347177" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -702,7 +702,8 @@
     <MESSAGE value="Just another test commit (AuthController)" />
     <MESSAGE value="sessions" />
     <MESSAGE value="actionAdd Completed!" />
-    <option name="LAST_COMMIT_MESSAGE" value="actionAdd Completed!" />
+    <MESSAGE value="actionIndex Completed!" />
+    <option name="LAST_COMMIT_MESSAGE" value="actionIndex Completed!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -710,13 +711,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/test.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -762,7 +756,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/migrations" />
-    <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/countries" />
     <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/password_resets" />
     <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/genre" />
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
@@ -898,24 +891,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="3" selection-start-column="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -943,6 +922,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2018_12_08_001338_country.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/countries">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/singer">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PlateController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-494" />
@@ -955,13 +951,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2018_12_08_001338_country.php">
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/singer">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
         <state>
-          <filtering enabled="true" />
+          <caret column="3" selection-start-column="3" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -972,10 +968,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://077772d1-bed6-4789-bb11-64546d4ed527/schema/bonch/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CartController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="100" column="86" selection-start-line="100" selection-start-column="86" selection-end-line="100" selection-end-column="86" />
+        <state relative-caret-position="-647">
+          <caret line="99" column="77" selection-start-line="99" selection-start-column="77" selection-end-line="99" selection-end-column="77" />
           <folding>
             <element signature="e#40#53#0#PHP" expanded="true" />
           </folding>
