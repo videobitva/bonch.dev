@@ -153,11 +153,11 @@ class CartController extends Controller
 
         if($use_bonus){
             $result['total'] = $pre_total - $bonus;
-            DB::table('users')->where('id', $request->get('id'))->update(['bonus' => 0]);
+            DB::table('users')->where('id', '=', $request->get('id'))->update(['bonus' => 0]);
         }
         else{
             $result['total'] = $pre_total;
-            DB::table('users')->where('id', $request->get('id'))->update(['bonus' => $bonus + $pre_total * 0,1]);
+            DB::table('users')->where('id', '=', $request->get('id'))->update(['bonus' => $bonus + $pre_total * 0,1]);
         }
         return response()->json($result);
     }
