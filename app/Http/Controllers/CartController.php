@@ -89,6 +89,8 @@ class CartController extends Controller
         );
         $product = array(
             'name' => null,
+            'year_issue' => null,
+            'year_publishing' => null,
             'singer' => null, //
             'genre' => null, //
             'label' => null, //
@@ -107,6 +109,16 @@ class CartController extends Controller
 
             $product['name'] = DB::table('plates')
                 ->select('name')
+                ->where('id','=', $arr['id_plate'])
+                ->get();
+
+            $product['year_issue'] = DB::table('plates')
+                ->select('year_issue')
+                ->where('id','=', $arr['id_plate'])
+                ->get();
+
+            $product['year_publishing'] = DB::table('plates')
+                ->select('year_publishing')
                 ->where('id','=', $arr['id_plate'])
                 ->get();
 
