@@ -122,7 +122,7 @@ class CartController extends Controller
                 ->get();
 
             $product['country'] = DB::table('plates')
-                ->join('country','plates.id_country','=','country.id')
+                ->join('countries','plates.id_country','=','countries.id')
                 ->select('name')
                 ->where('id', $arr['id_plate'])
                 ->get();
@@ -150,33 +150,6 @@ class CartController extends Controller
         }
         return response()->json($result);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function actionCount(Request $request){
         // Получить количество товаров
