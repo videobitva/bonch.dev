@@ -91,6 +91,7 @@ class CartController extends Controller
             'name' => null,
             'singer' => null, //
             'genre' => null, //
+            'label' => null, //
             'country' => null, //
             'state' => null, //
             'price' => null,
@@ -106,36 +107,42 @@ class CartController extends Controller
 
             $product['name'] = DB::table('plates')
                 ->select('name')
-                ->where('id', $arr['id_plate'])
+                ->where('id','=', $arr['id_plate'])
                 ->get();
 
             $product['singer'] = DB::table('plates')
                 ->join('singer','plates.id_singer','=','singer.id')
-                ->select('name')
-                ->where('id', $arr['id_plate'])
+                ->select('singer.name')
+                ->where('plates.id','=', $arr['id_plate'])
                 ->get();
 
             $product['genre'] = DB::table('plates')
                 ->join('genre','plates.id_genre','=','genre.id')
-                ->select('name')
-                ->where('id', $arr['id_plate'])
+                ->select('genre.name')
+                ->where('plates.id','=', $arr['id_plate'])
+                ->get();
+
+            $product['label'] = DB::table('plates')
+                ->join('label','plates.id_label','=','label.id')
+                ->select('label.name')
+                ->where('plates.id','=', $arr['id_plate'])
                 ->get();
 
             $product['country'] = DB::table('plates')
                 ->join('countries','plates.id_country','=','countries.id')
-                ->select('name')
-                ->where('id', $arr['id_plate'])
+                ->select('countries.name')
+                ->where('plates.id','=', $arr['id_plate'])
                 ->get();
 
             $product['state'] = DB::table('plates')
                 ->join('state','plates.id_state','=','state.id')
-                ->select('name')
-                ->where('id', $arr['id_plate'])
+                ->select('state.name')
+                ->where('plate.id','=', $arr['id_plate'])
                 ->get();
 
             $product['price'] = DB::table('plates')
                 ->select('price')
-                ->where('id', $arr['id_plate'])
+                ->where('id', '=', $arr['id_plate'])
                 ->get('price');
 
             array_push($result['products'], $product);
