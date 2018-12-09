@@ -39,6 +39,12 @@ class OrderController extends Controller
         DB::insert('insert into order (id_user, id_country, address, index, phone_number, id_plate, total) values (?, ?, ?, ?, ?, ?, ?)',
             [$user_id, $country_id, $address, $index, $phone_number, $plate_id, $total]);
 
+        //Clearing Session..
+
+        $request->session()->flush();
+
+        //End of work..
+
         return response()->json('Order was successfully made');
     }
 }
