@@ -18,4 +18,9 @@ Route::get('/test', 'CartController@view');#->middleware('jwt.auth');
 
 Route::group(['middleware' => ['web']], function() {
     Route::get('/cart/add', 'CartController@actionAdd');
+    Route::get('/cart/delete', 'CartController@actionDelete');
+    Route::get('cart/index', 'CartController@actionIndex');
+    Route::get('cart/count', 'CartController@actionCount');
 });
+
+

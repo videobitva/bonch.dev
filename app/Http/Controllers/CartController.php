@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use DB;
 use Session;
 use function Psy\debug;
+use Auth;
 
 class CartController extends Controller
 {
@@ -101,8 +102,6 @@ class CartController extends Controller
 
         //Needs User's ID from /api/login; Needs to know if bonuses are used;
 
-        $bonus = DB::table('users')->select('bonus')->where('id', $request->get('id'))->get();
-        $use_bonus = $request->get('use_bonus', false);
         $count = 0;
         $pre_total = 0;
         foreach ($request->session()->get('plates') as $arr){
@@ -163,13 +162,18 @@ class CartController extends Controller
             $count += 1;
         }
 
-        if($use_bonus){
-            $result['total'] = $pre_total - $bonus;
-            DB::table('users')->where('id', '=', $request->get('id'))->update(['bonus' => 0]);
+        if (Auth::check()){
+            $bonus = DB::table('users')->select('bonus')->where('id', Auth::id()/*$request->get('id')*/)->get();
+            $use_bonus = $request->get('use_bonus', false);
+            if($use_bonus){
+                $result['total'] = $pre_total - $bonus;
+            }
+            else{
+                $result['total'] = $pre_total;
+            }
         }
         else{
             $result['total'] = $pre_total;
-            DB::table('users')->where('id', '=', $request->get('id'))->update(['bonus' => $bonus + $pre_total * 0,1]);
         }
 
         return response()->json($result);

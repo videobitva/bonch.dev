@@ -45,6 +45,10 @@ class OrderController extends Controller
 
         //End of work..
 
+        DB::table('users')->where('id', '=', $request->get('id'))->update(['bonus' => 0]);
+
+        DB::table('users')->where('id', '=', $request->get('id'))->update(['bonus' => $bonus + $pre_total * 0,1]);
+
         return response()->json('Order was successfully made');
     }
 }
