@@ -27,10 +27,10 @@ class CreatePlatesTable extends Migration
             $table->string('track_list');
             $table->timestamps();
 
-           /* $table->foreign('id_singer')->references('id')->on('singer')->onDelete('cascade');
-            $table->foreign('id_genre')->references('id')->on('genre')->onDelete('cascade');
-            $table->foreign('id_country')->references('id')->on('countries')->onDelete('cascade');
-            $table->foreign('id_state')->references('id')->on('state')->onDelete('cascade');*/
+            /* $table->foreign('id_singer')->references('id')->on('singer')->onDelete('cascade');
+             $table->foreign('id_genre')->references('id')->on('genre')->onDelete('cascade');
+             $table->foreign('id_country')->references('id')->on('countries')->onDelete('cascade');
+             $table->foreign('id_state')->references('id')->on('state')->onDelete('cascade');*/
         });
     }
 
