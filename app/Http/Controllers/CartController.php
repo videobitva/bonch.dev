@@ -171,8 +171,17 @@ class CartController extends Controller
             $result['total'] = $pre_total;
             DB::table('users')->where('id', '=', $request->get('id'))->update(['bonus' => $bonus + $pre_total * 0,1]);
         }
+
         return response()->json($result);
     }
+
+    /*public function actionTotal($pre_total, $bonus, $use_bonus){
+        if($use_bonus){
+            return ($pre_total - $bonus);
+        }
+        else{
+            return ($pre_total);
+        }*/
 
     public function actionCount(Request $request){
         // Получить количество товаров
