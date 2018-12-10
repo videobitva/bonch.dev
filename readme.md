@@ -19,3 +19,4 @@ Note: After doing this user gets Email for account verification. Until it's not 
 
 Note: This will return you JSON response with info about success/fail, and in case of success token for passing through the JWT Authentication.
 
+com
