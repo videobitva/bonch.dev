@@ -96,8 +96,8 @@
       <file leaf-file-name="PlateSeeder.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/seeds/PlateSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+            <state relative-caret-position="255">
+              <caret line="48" column="29" lean-forward="true" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -376,7 +376,7 @@
       <workItem from="1543867621072" duration="709000" />
       <workItem from="1543868929903" duration="18725000" />
       <workItem from="1544120953818" duration="11181000" />
-      <workItem from="1544389869060" duration="13722000" />
+      <workItem from="1544389869060" duration="13755000" />
     </task>
     <task id="LOCAL-00001" summary="none">
       <created>1543869541252</created>
@@ -420,11 +420,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544232795161</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="sessions">
+      <created>1544404776603</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1544404776603</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80927000" />
+    <option name="totallyTimeSpent" value="80960000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -794,8 +801,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/PlateSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+        <state relative-caret-position="255">
+          <caret line="48" column="29" lean-forward="true" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
         </state>
       </provider>
     </entry>
