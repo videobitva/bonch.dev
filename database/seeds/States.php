@@ -11,7 +11,7 @@ class States extends Seeder
      */
     public function run()
     {
-        $states = array("Battle-Scarred", "Well-Worn", "Field-Tested", "Minimal Wear", "Factory new");
+        $states = array("Still Sealed", "Mint", "Near Mint", "Very Good", "Good", "Excellent");
 
         foreach ($states as $arr) {
             DB::table('state')->insert([
