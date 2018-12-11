@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * App\User
@@ -38,7 +37,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
  */
-class User extends Authenticatable implements JWTSubject, MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -60,18 +59,5 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
 }
 

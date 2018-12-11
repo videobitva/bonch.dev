@@ -1,4 +1,4 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<p align="center"><img src="/logo.png"></p>
 
 ## Bonch.Dev Project by group 4
 
