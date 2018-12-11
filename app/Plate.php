@@ -36,5 +36,15 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Plate extends Model
 {
-    //
+    /**
+     * Plate constructor.
+     * @param array $attributes
+     */
+
+    public function cart(){
+        return $this->belongsTo('App\Cart');
+    }
+
+    protected $table = 'plates';
+    public $timestamps = false;
 }

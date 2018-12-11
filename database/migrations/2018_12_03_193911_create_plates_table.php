@@ -23,7 +23,6 @@ class CreatePlatesTable extends Migration
             $table->integer('id_country')->unsigned();
             $table->integer('id_state')->unsigned();
             $table->decimal('price');
-            $table->integer('bonus');
             $table->integer('id_label');
             $table->string('track_list');
             $table->timestamps();

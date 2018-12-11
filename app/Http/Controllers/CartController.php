@@ -4,14 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Plate;
+
 use Illuminate\Http\Request;
 use DB;
 use Session;
-use function Psy\debug;
 use Auth;
+use Shasoft\Console\Console;
 
 class CartController extends Controller
 {
+    public function add(Request $request)
+    {
+        $id_plate = $request->get('id_plate');
+
+        if ($request->session()->has('cart')) {
+            $cart = $request->session()->get('cart');
+            //Console::color('light_grey')->bgcolor('blue')->writeln(var_dump($cart));
+            //sleep(10000);
+            //dd($cart);
+            if ($cart->check($id_plate)){
+                $cart->addOld($id_plate);
+                $request->session()->put('cart', $cart);
+            }
+            else{
+                $cart->addNew($id_plate);
+                $request->session()->put('cart', $cart);
+            }
+        }
+        else{
+            $cart = new Cart(['id_plate' => array($id_plate), 'count' => array(1)]);
+            $request->session()->put('cart', $cart);
+            }
+        return response()->json($request->session()->get('cart'));
+    }
+
+    public function show_me(Request $request){
+        return response()->json($request->get('id_plate'));
+    }
+
     public function actionAdd(Request $request)
     {
         $id_plate = $request->get('id_plate');
@@ -205,7 +235,6 @@ class CartController extends Controller
         return view('test');
     }
 
-
     public function store(Request $request)
     {
         //
@@ -217,6 +246,7 @@ class CartController extends Controller
      * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
+
     public function show(Cart $cart)
     {
         //
@@ -228,6 +258,7 @@ class CartController extends Controller
      * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Cart $cart)
     {
         //
@@ -240,6 +271,7 @@ class CartController extends Controller
      * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Cart $cart)
     {
         //
@@ -251,6 +283,7 @@ class CartController extends Controller
      * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Cart $cart)
     {
         //
