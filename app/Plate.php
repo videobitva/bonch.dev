@@ -45,6 +45,32 @@ class Plate extends Model
         return $this->belongsTo('App\Cart');
     }
 
+    public function genre(){
+        return $this->belongsTo('App\Genre');
+    }
+
+    public function label(){
+        return $this->belongsTo('App\Label');
+    }
+
+    public function order(){
+        return $this->belongsTo('App\Order');
+    }
+
+    public function singer(){
+        return $this->belongsTo('App\Singer');
+    }
+
+    public function state()
+    {
+        return $this->belongsTo('App\State');
+
+    }
+
+        public function country(){
+            return $this->belongsTo('App\Country');
+        }
+
     protected $table = 'plates';
     public $timestamps = false;
 }

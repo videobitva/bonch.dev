@@ -17,6 +17,7 @@ class Cart extends Model
     public function plate(){
         return $this->hasMany('App\Plate');
     }
+
     public function addNew($id_plate){
         array_pull($this->id_plate, $id_plate);
         array_pull($this->count, 1);

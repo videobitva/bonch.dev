@@ -59,5 +59,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    public function Order()
+    {
+        return $this->hasMany('App\Order');
+    }
 }
 
