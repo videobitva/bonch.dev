@@ -8,7 +8,6 @@ use App\Plate;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
-use Shasoft\Console\Console;
 
 class CartController extends Controller
 {
@@ -18,23 +17,21 @@ class CartController extends Controller
 
         if ($request->session()->has('cart')) {
             $cart = $request->session()->get('cart');
-            //Console::color('light_grey')->bgcolor('blue')->writeln(var_dump($cart));
-            //sleep(10000);
-            //dd($cart);
             if ($cart->check($id_plate)){
                 $cart->addOld($id_plate);
-                $request->session()->put('cart', $cart->fillable);
+                $request->session()->put('cart', $cart);
             }
             else{
                 $cart->addNew($id_plate);
-                $request->session()->put('cart', $cart->fillable);
+                $request->session()->put('cart', $cart);
             }
         }
         else{
             $cart = new Cart;
-            $cart = $cart->newCart($id_plate);
-            $request->session()->put('cart', $cart->fillable);
+            $cart->newCart($id_plate);
+            $request->session()->put('cart', $cart);
             }
+
         return response()->json($request->session()->get('cart'));
     }
 
