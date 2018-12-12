@@ -18,29 +18,29 @@ class Cart extends Model
         return $this->hasMany('App\Plate');
     }
     public function addNew($id_plate){
-        array_pull($this->id_plate, $id_plate);
-        array_pull($this->count, 1);
+        array_push($this->fillable['id_plate'],$id_plate);
+        array_push($this->fillable['count'],1);
     }
+
     public function addOld($id_plate){
-        array_pull($this->count[$this->target($id_plate)], $this->count[$this->target($id_plate)] + 1);
+        $this->fillable['count'][$this->target($id_plate)] += 1;
+    }
+
+    public function newCart($id_plate){
+        $this->fillable['id_plate'] = $id_plate;
+        $this->fillable['count'] = 1;
     }
     public function check($id_plate){
-        return(in_array($id_plate, $this->id_plate));
+        return(in_array($id_plate, $this->fillable[$id_plate]));
     }
     public function remove($id_plate){
-        unset($this->id_plate[$this->target($id_plate)]);
-        unset($this->count[$this->target($id_plate)]);
-        array_values($this->id_plate);
-        array_values($this->count);
+        unset($this->fillable['id_plate'][$this->target($id_plate)]);
+        unset($this->fillable['count'][$this->target($id_plate)]);
+        sort($this->fillable['id_plate']);
+        sort($this->fillable['count']);
     }
     public function target($id_plate){
-        $index = null;
-        foreach ($this->id_plate as $arr){
-            $index += 1;
-            if ($arr == $id_plate){
-                return ($index-1);
-            }
-        }
+        return (array_search($id_plate, $this->fillable['id_plate']));
     }
 }
 

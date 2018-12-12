@@ -7,7 +7,6 @@ use App\Plate;
 
 use Illuminate\Http\Request;
 use DB;
-use Session;
 use Auth;
 use Shasoft\Console\Console;
 
@@ -24,65 +23,23 @@ class CartController extends Controller
             //dd($cart);
             if ($cart->check($id_plate)){
                 $cart->addOld($id_plate);
-                $request->session()->put('cart', $cart);
+                $request->session()->put('cart', $cart->fillable);
             }
             else{
                 $cart->addNew($id_plate);
-                $request->session()->put('cart', $cart);
+                $request->session()->put('cart', $cart->fillable);
             }
         }
         else{
-            $cart = new Cart(['id_plate' => array($id_plate), 'count' => array(1)]);
-            $request->session()->put('cart', $cart);
+            $cart = new Cart;
+            $cart = $cart->newCart($id_plate);
+            $request->session()->put('cart', $cart->fillable);
             }
         return response()->json($request->session()->get('cart'));
     }
 
     public function show_me(Request $request){
         return response()->json($request->get('id_plate'));
-    }
-
-    public function actionAdd(Request $request)
-    {
-        $id_plate = $request->get('id_plate');
-
-        $template = array('id_plate' => null, 'count' => null);
-
-        $counter = 0;
-
-        $success = false;
-
-        if ($request->session()->has('plates')){
-
-            foreach ($request->session()->get('plates') as $arr){
-
-                $currentID = $arr['id_plate'];
-                $currentCount = $arr['count'];
-
-                if ($id_plate == $currentID){
-                    $route = 'plates.'.$counter.'.count';
-                    $currentCount += 1;
-                    $request->session()->put($route, $currentCount);
-                    $success = true;
-                }
-
-                $counter += 1;
-            }
-
-            if ($success == false){
-                $template['id_plate'] = $id_plate;
-                $template['count'] = 1;
-                $request->session()->push('plates', $template);
-            }
-        }
-        else{
-            $template['id_plate'] = $id_plate;
-            $template['count'] = 1;
-            $request->session()->push('plates', $template);
-        }
-
-        $response = $request->session()->get('plates');
-        return response()->json($response);
     }
 
     public function actionDelete(Request $request)
@@ -208,14 +165,6 @@ class CartController extends Controller
 
         return response()->json($result);
     }
-
-    /*public function actionTotal($pre_total, $bonus, $use_bonus){
-        if($use_bonus){
-            return ($pre_total - $bonus);
-        }
-        else{
-            return ($pre_total);
-        }*/
 
     public function actionCount(Request $request){
         // Получить количество товаров
