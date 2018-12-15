@@ -12,55 +12,54 @@ use App\Plate;
  */
 class Cart extends Model
 {
-    protected $id_plate = array();
-    protected $count = array();
-    protected $debug = array();
-    protected $attributes = [];
+    protected $attributes = ['cart' => array()];
 
     public function plate(){
         return $this->hasMany('App\Plate');
     }
 
-    public function addNew($id_plate){
-        $this->id_plate[] = $id_plate;
-        $this->count[] = 1;
-        $this->debug[] = 'addNew ID = '.$id_plate;
-        $this->commit();
+    public function addNew($idPlate){
+        $product = new Product($idPlate,1,'addNew');
+        $this->attributes['cart'][] = $product;
+        return $this;
     }
 
-    public function addOld($id_plate){
-        $this->count[$this->target($id_plate)] += 1;
-        $this->debug[] = 'addOld ID = '.$id_plate;
-        $this->commit();
+    public function addOld($idPlate){
+        $product = $this->attributes['cart'][$this->scan($idPlate)];
+        $product->count += 1;
+        $product->debug = 'addOld';
+        $this->attributes['cart'][$this->scan($idPlate)] = $product;
+        return $this;
     }
 
-    public function newCart($id_plate){
-        $this->id_plate[] = $id_plate;
-        $this->count[] = 1;
-        $this->debug[] = 'newCart ID = '.$id_plate;
-        $this->commit();
+    public function scan($idPlate){
+        $id = 0;
+        foreach ($this->attributes['cart'] as $arr){
+            if ($arr->id_plate == $idPlate){
+                return $id;
+            }
+            $id += 1;
+        }
+        return null;
     }
 
-    public function check($id_plate){
-        return (in_array($id_plate, $this->id_plate));
+    public function check($idPlate){
+        foreach ($this->attributes['cart'] as $arr){
+            if ($arr->id_plate == $idPlate){
+                return true;
+            }
+        }
+        return false;
     }
+}
 
-    public function remove($id_plate){
-        unset($this->id_plate[$this->target($id_plate)]);
-        unset($this->count[$this->target($id_plate)]);
-        sort($this->id_plate);
-        sort($this->id_plate);
-        $this->commit();
-    }
-
-    public function target($id_plate){
-        return (array_search($id_plate, $this->attributes['id_plate']));
-    }
-
-    public function commit(){
-        $this->attributes['id_plate'] = $this->id_plate;
-        $this->attributes['count'] = $this->count;
-        $this->attributes['debug'] = $this->debug;
+class Product
+{
+    public function __construct($id_plate, $count = 1, $debug)
+    {
+        $this->id_plate = $id_plate;
+        $this->count = $count;
+        $this->debug = $debug;
     }
 }
 

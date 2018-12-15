@@ -3,43 +3,49 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
-use App\Plate;
 
 use Illuminate\Http\Request;
 use DB;
 use Auth;
 
+
 class CartController extends Controller
 {
-    public function add(Request $request)
+    public function actionAdd(Request $request)
     {
         $id_plate = $request->get('id_plate');
 
-        if ($request->session()->has('cart')) {
+        if($request->session()->has('cart')){
+
             $cart = $request->session()->get('cart');
-            if ($cart->check($id_plate)){
-                $cart->addOld($id_plate);
+
+            if (!$cart->check($id_plate)){
+                $cart = $cart->addNew($id_plate);
                 $request->session()->put('cart', $cart);
             }
             else{
-                $cart->addNew($id_plate);
+                $cart->addOld($id_plate);
                 $request->session()->put('cart', $cart);
             }
         }
         else{
             $cart = new Cart;
-            $cart->newCart($id_plate);
-            $request->session()->put('cart', $cart);
-            }
-
+            $request->session()->put('cart', $cart->addNew($id_plate));
+        }
         return response()->json($request->session()->get('cart'));
     }
 
-    public function show_me(Request $request){
+    public function actionDelete(Request $request)
+    {
+        //
+    }
+
+    public function show_me(Request $request)
+    {
         return response()->json($request->get('id_plate'));
     }
 
-    public function actionDelete(Request $request)
+    /*public function actionDelete(Request $request)
     {
         // Удалить товар из корзины
 
@@ -65,6 +71,7 @@ class CartController extends Controller
         }
 
     }
+*/
 
     public function actionIndex(Request $request)
     {

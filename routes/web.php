@@ -16,10 +16,13 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 Route::group(['middleware' => ['web']], function() {
-    Route::get('/cart/add', 'CartController@add');
+
+    Route::get('/cart/add', 'CartController@actionAdd');
     Route::get('/cart/delete', 'CartController@actionDelete');
-    Route::get('cart/index', 'CartController@actionIndex');
-    Route::get('cart/count', 'CartController@actionCount');
+
+    Route::get('/cart/index', 'CartController@actionIndex');
+    Route::get('/cart/count', 'CartController@actionCount');
     Route::get('/cart/show', 'CartController@show_me');
+
 });
 
