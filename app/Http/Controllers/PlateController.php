@@ -105,7 +105,73 @@ class PlateController extends Controller
         return response()->json($data);
     }
 
-   public function index()
+    public function newPlate()
+    {
+        $results = Plate::with('Label', 'Genre', 'Singer', 'State')
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
+        foreach ($results as $result) {
+            $data[] = $result;
+        }
+        return response()->json($data);
+    }
+
+    public function bestsellerPlate()
+    {
+        $results = Plate::with('Label', 'Genre', 'Singer', 'State')
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
+        foreach ($results as $result) {
+            $data[] = $result;
+        }
+        return response()->json($data);
+    }
+
+    public function preordersPlate()
+    {
+        $results = Plate::with('Label', 'Genre', 'Singer', 'State')
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
+        foreach ($results as $result) {
+            $data[] = $result;
+        }
+        return response()->json($data);
+    }
+
+    public function selectionGenre1Catalog(){
+        $results=Plate::with('Label','Genre','Singer')
+            ->where('id_genre', 2)
+            ->get();
+        foreach ($results as $result){
+            $data[] = $result;
+        }
+        return response()->json($data);
+    }
+
+    public function selectionGenre2Catalog(){
+        $results=Plate::with('Label','Genre','Singer')
+            ->where('id_genre', 1)
+            ->get();
+        foreach ($results as $result){
+            $data[] = $result;
+        }
+        return response()->json($data);
+    }
+
+    public function selectionYearCatalog(){
+        $results=Plate::with('Label','Genre','Singer')
+            ->where('year_issue', 'BETWEEN', 1990, 2000)
+            ->get();
+        foreach ($results as $result){
+            $data[] = $result;
+        }
+        return response()->json($data);
+    }
+
+    public function index()
     {
         //
     }
