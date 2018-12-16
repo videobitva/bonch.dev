@@ -10,26 +10,39 @@ class UserController extends Controller
 {
     public function addFavourite(Request $request)
     {
-        if (User::where('id', '=', Auth::id())->get()[0]->favourite) {
-            $list = User::where('id', '=', Auth::id())->get()[0]->favourite;
+        $addition = array($request->get('id'));
 
-            User::where('id', '=', Auth::id())->update(array('favourite' => json_encode($list)));
-
-            return response()->json(User::where('id', '=', Auth::id())->get()[0]->favourite);
-
+        if(!User::where('id', '=', Auth::id())->get()[0]->favourite) {
+            User::where('id', '=', Auth::id())->update(['favourite' => json_encode($addition)]);
         }
+        else{
+            if (in_array($request->get('id'), json_decode(User::where('id', '=', Auth::id())->get()[0]->favourite))){
+                return response(User::where('id', '=', Auth::id())->get()[0]->favourite);
+            }
+            User::where('id', '=', Auth::id())->update(['favourite' => json_encode(array_merge(json_decode(User::where('id', '=', Auth::id())->get()[0]->favourite),$addition))]);
+        }
+        return response(User::where('id', '=', Auth::id())->get()[0]->favourite);
     }
+
     public function getFavourite()
     {
-        $favourite = array('favourites' => User::where('id','=',Auth::id())->get()[0]->favourite);
-        return response()->json($favourite);
-
+        return response(User::where('id','=',Auth::id())->get()[0]->favourite);
     }
+
+    public function removeFavourite(Request $request)
+    {
+        $target_id = array_search($request->get('id'), json_decode(User::where('id', '=', Auth::id())->get()[0]->favourite));
+        $new_fav = json_decode(User::where('id', '=', Auth::id())->get()[0]->favourite);
+        unset($new_fav[$target_id]);
+        User::where('id', '=', Auth::id())->update(['favourite' => json_encode($new_fav)]);
+        return response(User::where('id', '=', Auth::id())->get()[0]->favourite);
+    }
+
 
     public function getUserID(){
-        return Auth::id();
+        return response()->json(Auth::id());
     }
     public function getUserInfo(){
-        return response()->json(User::where('id','=',Auth::id())->get()[0]);
+        return response()->json(Auth::user());
     }
 }

@@ -27,6 +27,8 @@ Route::group(['middleware' => ['web']], function() {
 Route::group(['middleware' => ['web', 'auth', 'verified']], function (){
     Route::get('/user/get_favourite', 'UserController@getFavourite');
     Route::get('/user/add_favourite', 'UserController@addFavourite');
+    Route::get('/user/remove_favourite', 'UserController@removeFavourite');
+
     Route::get('/user/get_id','UserController@getUserID');
     Route::get('/user/get_user_info','UserController@getUserInfo');
 
