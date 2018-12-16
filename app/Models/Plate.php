@@ -1,6 +1,8 @@
 <?php
+
 namespace App;
 use Illuminate\Database\Eloquent\Model;
+
 /**
  * Class Plate
  *
@@ -37,28 +39,37 @@ class Plate extends Model
      * Plate constructor.
      * @param array $attributes
      */
+
     public function cart(){
         return $this->belongsTo('Cart::class');
     }
+
     public function genre(){
         return $this->belongsTo('App\Models\Genre');
     }
+
     public function label(){
         return $this->belongsTo('App\Models\Label');
     }
+
     public function order(){
         return $this->belongsTo('Order::class');
     }
+
     public function singer(){
         return $this->belongsTo('App\Models\Singer');
     }
+
     public function state()
     {
         return $this->belongsTo('App\Models\State');
+
     }
+
         public function country(){
             return $this->belongsTo('App\Models\Country');
         }
+
     protected $table = 'plates';
     public $timestamps = false;
 }
