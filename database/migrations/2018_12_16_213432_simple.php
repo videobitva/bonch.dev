@@ -1,35 +1,35 @@
 <?php
 
-namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-use Illuminate\Http\Request;
-use App\User;
-use Auth;
-
-class UserController extends Controller
+class Simple extends Migration
 {
-    public function addFavourite(Request $request)
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
     {
-        if (User::where('id', '=', Auth::id())->get()[0]->favourite) {
-            $list = User::where('id', '=', Auth::id())->get()[0]->favourite;
-
-            User::where('id', '=', Auth::id())->update(array('favourite' => json_encode($list)));
-
-            return response()->json(User::where('id', '=', Auth::id())->get()[0]->favourite);
-
-        }
+        Schema::table('plates', function (Blueprint $table) {
+            $table->string('track_list', 1000)->change();
+        });
+        Schema::table('order', function (Blueprint $table) {
+            $table->string('price', 1000)->change();
+            $table->string('phone_number', 1000)->change();
+            $table->string('address', 1000)->change();
+        });
     }
-    public function getFavourite()
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
     {
-        $favourite = array('favourites' => User::where('id','=',Auth::id())->get()[0]->favourite);
-        return response()->json($favourite);
-
-    }
-
-    public function getUserID(){
-        return Auth::id();
-    }
-    public function getUserInfo(){
-        return response()->json(User::where('id','=',Auth::id())->get()[0]);
+        //
     }
 }
