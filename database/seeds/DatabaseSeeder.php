@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CountrySeeder::class);
         $this->call(GenreSeeder::class);
         $this->call(LableSeeder::class);
-        $this->call(PlateSeeder::class);
         $this->call(SingerSeeder::class);
         $this->call(States::class);
+        $this->call(PlateSeeder::class);
     }
 }

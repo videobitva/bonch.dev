@@ -17,7 +17,7 @@ class Simple extends Migration
             $table->string('track_list', 1000)->change();
         });
         Schema::table('order', function (Blueprint $table) {
-            $table->string('price', 1000)->change();
+            $table->string('total', 1000)->change();
             $table->string('phone_number', 1000)->change();
             $table->string('address', 1000)->change();
         });
