@@ -27,7 +27,8 @@ Route::group(['middleware' => ['web']], function() {
 Route::group(['middleware' => ['web', 'auth', 'verified']], function (){
     Route::get('/user/get_favourite', 'UserController@getFavourite');
     Route::get('/user/add_favourite', 'UserController@addFavourite');
-    Route::get('/user/info','UserController@getUser');
+    Route::get('/user/get_id','UserController@getUserID');
+    Route::get('/user/get_user_info','UserController@getUserInfo');
 
     Route::get('/order/make', 'OrderController@order');
     Route::get('/order/index', 'OrderController@index');
@@ -41,9 +42,10 @@ Route::get('/plate/label/','PlateController@sortLabel');
 Route::get('/plate/year/issue/','PlateController@yearIssue');
 Route::get('/plate/year/publishing/','PlateController@yearPublishing');
 Route::get('/plate/card/','PlateController@cardPlate');
-Route::get('/plate/new','PlateController@newPlate');
-Route::get('/plate/best','PlateController@bestellerPlate');
-Route::get('/plate/pre','PlateController@preordersPlate');
+
+Route::get('/plate/new/','PlateController@newPlate');
+Route::get('/plate/best/','PlateController@bestellerPlate');
+Route::get('/plate/pre/','PlateController@preordersPlate');
 Route::get('/plate/select/genre1','PlateController@selectionGenre1Catalog');
 Route::get('/plate/select/genre2','PlateController@selectionGenre2Catalog');
 Route::get('/plate/select/year','PlateController@selectionYearCatalog');

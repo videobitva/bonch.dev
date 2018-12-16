@@ -23,7 +23,6 @@ class Plates extends Migration
             $table->integer('id_country')->unsigned();
             $table->integer('id_state')->unsigned();
             $table->float('price');
-            $table->integer('bonus');
             $table->integer('id_label')->unsigned();
             $table->string('track_list');
             $table->timestamps();

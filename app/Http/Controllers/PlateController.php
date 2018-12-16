@@ -163,7 +163,7 @@ class PlateController extends Controller
 
     public function selectionYearCatalog(){
         $results=Plate::with('Label','Genre','Singer')
-            ->where('year_issue', 'BETWEEN', 1990, 2000)
+            ->whereBetween('year_issue',[1980, 1990])
             ->get();
         foreach ($results as $result){
             $data[] = $result;
