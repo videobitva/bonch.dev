@@ -19,10 +19,18 @@ Route::group(['middleware' => ['web']], function() {
 
     Route::get('/cart/add', 'CartController@actionAdd');
     Route::get('/cart/delete', 'CartController@actionDelete');
-
-    Route::get('/cart/index', 'CartController@actionIndex');
     Route::get('/cart/count', 'CartController@actionCount');
-    Route::get('/cart/show', 'CartController@show_me');
+    Route::get('/cart/show', 'CartController@actionShow');
 
+});
+
+Route::group(['middleware' => ['web', 'auth', 'verified']], function (){
+    Route::get('/user/get_favourite', 'UserController@getFavourite');
+    Route::get('/user/add_favourite', 'UserController@addFavourite');
+    Route::get('/user/info','UserController@getUser');
+
+    Route::get('/order/make', 'OrderController@order');
+    Route::get('/order/index', 'OrderController@index');
+    Route::get('/order/total', 'OrderController@total');
 });
 

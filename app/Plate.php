@@ -36,14 +36,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Plate extends Model
 {
-    /**
-     * Plate constructor.
-     * @param array $attributes
-     */
-
-    public function cart(){
-        return $this->belongsTo('App\Cart');
-    }
 
     public function genre(){
         return $this->belongsTo('App\Genre');
@@ -61,15 +53,13 @@ class Plate extends Model
         return $this->belongsTo('App\Singer');
     }
 
-    public function state()
-    {
+    public function state(){
         return $this->belongsTo('App\State');
-
     }
 
-        public function country(){
-            return $this->belongsTo('App\Country');
-        }
+    public function country(){
+        return $this->belongsTo('App\Country');
+    }
 
     protected $table = 'plates';
     public $timestamps = false;

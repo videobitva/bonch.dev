@@ -10,4 +10,5 @@ class Genre extends Model
     {
         return $this->hasMany('App\Plate');
     }
+    protected $table = 'genre';
 }

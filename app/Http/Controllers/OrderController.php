@@ -2,53 +2,85 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Country;
+use App\User;
 use Illuminate\Http\Request;
-use DB;
-use Session;
-use App\Http\Controllers\CartController;
+use Auth;
 
 class OrderController extends Controller
 {
-    public function make(Request $request){
+    public function order(Request $request){
 
-        //Getting dependencies..
+        $id_user = Auth::id();
 
-        $user_id = $request->session()->get('user_id');
-        $country_id = DB::table('countries')
-            ->select('id')
-            ->where('name', '=', $request->session()->get('country'))
-            ->get();
-        $address = $request->session()->get('address');
-        $index = $request->session()->get('index');
-        $phone_number = $request->session()->get('phone_number');
+        $id_country = Country::where('name',$request->get('country'))->firstOrFail()->id;
 
-        $plate_id = array();
-        $total = null;
+        $address = $request->get('address');
 
-        foreach ($request->session()->get('plates') as $arr){
-            $price = DB::table('plates')
-                ->select('price')
-                ->where('id', '=', $arr['id_plate'])
-                ->get();
-            $total =  $total + $arr['count']*$price;
-            array_pull($plate_id, $arr['id_plate']);
+        $index = $request->get('index');
+
+        $phone_number = $request->get('phone_number');
+
+        $id_plate = array_keys($request->session()->get('cart')->cart);
+        unset($id_plate[array_search('sum',$id_plate)]);
+        $id_plate = implode(',',$id_plate);
+
+        $total = $this->total($request);
+
+        Order::create([
+            'id_user' => $id_user,
+            'id_country' => $id_country,
+            'address' => $address,
+            'index' => $index,
+            'phone_number' => $phone_number,
+            'id_plate' => $id_plate,
+            'total' => $total
+        ]);
+
+        if($request->get('use_bonus')){
+            User::where('id','=',$id_user)->update(['bonus' => 0]);
         }
-
-        //Writing order..
-
-        DB::insert('insert into order (id_user, id_country, address, index, phone_number, id_plate, total) values (?, ?, ?, ?, ?, ?, ?)',
-            [$user_id, $country_id, $address, $index, $phone_number, $plate_id, $total]);
-
-        //Clearing Session..
+        else{
+            User::where('id','=',$id_user)->update(['bonus' =>
+                User::where('id','=',$id_user)
+                    ->getAttribute('bonus') + $request->session()->get('cart')->cart['sum']*0,1]);
+        }
 
         $request->session()->flush();
 
-        //End of work..
-
-        DB::table('users')->where('id', '=', $request->get('id'))->update(['bonus' => 0]);
-
-        DB::table('users')->where('id', '=', $request->get('id'))->update(['bonus' => $bonus + $pre_total * 0,1]);
-
         return response()->json('Order was successfully made');
+    }
+
+    public function index(Request $request)
+    {
+        $products = array();
+
+            $cart = json_decode(json_encode($request->session()->get('cart')->cart));
+
+            foreach ($cart as $arr){
+                if (!is_int($arr)){
+                    array_push($products, $arr);
+                }
+            }
+
+        return response()->json($products);
+    }
+    public function total(Request $request)
+    {
+        $pre_total = $request->session()->get('cart')->cart['sum'];
+
+        if (Auth::check()){
+
+            $bonus = User::where('id', Auth::id())->get()[0]->bonus;
+
+            if($request->get('use_bonus', false)){
+                return  ($pre_total - $bonus);
+            }
+            else{
+                return ($pre_total);
+            }
+        }
+            return($pre_total);
     }
 }

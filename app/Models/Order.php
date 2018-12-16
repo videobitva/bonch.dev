@@ -16,4 +16,9 @@ class Order extends Model
         return $this->belongsTo('App\User');
 
     }
+
+    protected $table = 'order';
+
+    protected $fillable = ['id_user','id_country','address','index','phone_number','id_plate','total'];
+    public $timestamps = false;
 }

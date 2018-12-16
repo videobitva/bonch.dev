@@ -20,7 +20,6 @@ class PlateSeeder extends Seeder
             'id_country' => 1,
             'id_state' => 6,
             'price' => 1485,
-            'bonus' => 0,
             'id_label'=> 1,
             'track_list' =>
                 'Death Of An Analogue	12:20
@@ -38,7 +37,6 @@ class PlateSeeder extends Seeder
             'id_country' => 2,
             'id_state' => 3,
             'price' => 1245,
-            'bonus' => 0,
             'id_label'=> 2,
             'track_list' =>
                 'Heaven And Hell (part 1, including So Long Ago, So Clear)
@@ -53,7 +51,6 @@ class PlateSeeder extends Seeder
             'id_country' => 3,
             'id_state' => 1,
             'price' => 1985,
-            'bonus' => 0,
             'id_label'=> 3,
             'track_list' =>
                 'Europe Endless 
@@ -73,7 +70,6 @@ class PlateSeeder extends Seeder
             'id_country' => 4,
             'id_state' => 4,
             'price' => 1245,
-            'bonus' => 0,
             'id_label'=> 5,
             'track_list' =>
                 'Tangram Set 1
@@ -88,7 +84,6 @@ class PlateSeeder extends Seeder
             'id_country' => 1,
             'id_state' => 2,
             'price' => 945,
-            'bonus' => 0,
             'id_label'=> 5,
             'track_list' =>
                 'Beach Theme 
@@ -109,7 +104,6 @@ class PlateSeeder extends Seeder
             'id_country' => 1,
             'id_state' => 6,
             'price' => 845,
-            'bonus' => 0,
             'id_label'=> 5,
             'track_list' =>
                 'Mojave Plan
@@ -126,7 +120,6 @@ class PlateSeeder extends Seeder
             'id_country' => 1,
             'id_state' => 6,
             'price' => 985,
-            'bonus' => 0,
             'id_label'=> 6,
             'track_list' =>
                 'Firebird Suite (Stravinsky)
@@ -142,7 +135,6 @@ class PlateSeeder extends Seeder
             'id_country' => 4,
             'id_state' => 3,
             'price' => 1245,
-            'bonus' => 0,
             'id_label'=> 7,
             'track_list' =>
                 'Heaven And Hell (part 1, including So Long Ago, So Clear)
@@ -157,7 +149,6 @@ class PlateSeeder extends Seeder
             'id_country' =>4,
             'id_state' =>3,
             'price' => 1185,
-            'bonus' => 0,
             'id_label'=> 7,
             'track_list' =>
                 'Pulstar 
@@ -179,7 +170,6 @@ class PlateSeeder extends Seeder
             'id_country' => 4,
             'id_state' => 4,
             'price' => 985,
-            'bonus' => 0,
             'id_label'=> 7,
             'track_list' =>
                 'Spiral 
@@ -197,7 +187,6 @@ class PlateSeeder extends Seeder
             'id_country' => 1,
             'id_state' => 4,
             'price' => 1145,
-            'bonus' => 0,
             'id_label'=> 6,
             'track_list' =>
                 'I Can\'t Take It Any More 
@@ -216,7 +205,6 @@ class PlateSeeder extends Seeder
             'id_country' => 1,
             'id_state' => 6,
             'price' => 1145,
-            'bonus' => 0,
             'id_label'=> 6,
             'track_list' =>
                 'Movement 1 
@@ -234,7 +222,6 @@ class PlateSeeder extends Seeder
             'id_country' => 3,
             'id_state' => 3,
             'price' => 1985,
-            'bonus' => 0,
             'id_label'=> 5,
             'track_list' =>
                 '"Don\'t Take Your Love"  – 3:30
@@ -259,7 +246,6 @@ class PlateSeeder extends Seeder
             'id_country' => 4,
             'id_state' => 3,
             'price' => 1176,
-            'bonus' => 0,
             'id_label'=> 7,
             'track_list' =>
                 '"Hang On" – 3:46 (Steve Gould)
@@ -282,7 +268,6 @@ class PlateSeeder extends Seeder
             'id_country' => 3,
             'id_state' => 6,
             'price' => 158,
-            'bonus' => 0,
             'id_label'=> 3,
             'track_list' =>
                 '"Gimme An Inch Girl" (Robert Palmer) - 4:19
@@ -306,7 +291,6 @@ class PlateSeeder extends Seeder
             'id_country' => 1,
             'id_state' => 6,
             'price' => 836,
-            'bonus' => 0,
             'id_label'=> 6,
             'track_list' =>
                 '1. Fantasy: Loving Is Easy (4:00) 
@@ -330,7 +314,6 @@ class PlateSeeder extends Seeder
             'id_country' => 1,
             'id_state' => 3,
             'price' => 584,
-            'bonus' => 0,
             'id_label'=> 6,
             'track_list' =>
                 '1. Sideshow (4:56) 
@@ -352,7 +335,6 @@ class PlateSeeder extends Seeder
             'id_country' => 2,
             'id_state' => 3,
             'price' => 2996,
-            'bonus' => 0,
             'id_label'=> 2,
             'track_list' =>
                 'A Hard Day\'s Night
@@ -378,7 +360,6 @@ class PlateSeeder extends Seeder
             'id_country' => 2,
             'id_state' => 1,
             'price' => 3787,
-            'bonus' => 0,
             'id_label'=> 2,
             'track_list' =>
                 '1.	"She Loves You"		2:19
@@ -407,7 +388,6 @@ class PlateSeeder extends Seeder
             'id_country' => 2,
             'id_state' => 1,
             'price' => 2985,
-            'bonus' => 0,
             'id_label'=> 2,
             'track_list' =>
                 '“It\'s Only Love”                                        3:23
@@ -429,7 +409,6 @@ class PlateSeeder extends Seeder
             'id_country' => 1,
             'id_state' => 2,
             'price' => 686,
-            'bonus' => 0,
             'id_label'=> 5,
             'track_list' =>
                 '1.	"Amanda"	                                                                   4:16
@@ -452,7 +431,6 @@ class PlateSeeder extends Seeder
             'id_country' => 5,
             'id_state' => 5,
             'price' => 976,
-            'bonus' => 0,
             'id_label'=> 8,
             'track_list' =>
                 '"Carry On" - 3:47
@@ -477,7 +455,6 @@ class PlateSeeder extends Seeder
             'id_country' => 5,
             'id_state' => 6,
             'price' => 945,
-            'bonus' => 0,
             'id_label'=> 9,
             'track_list' =>
                 '1.	"Friends"	 	2:20
@@ -500,7 +477,6 @@ class PlateSeeder extends Seeder
             'id_country' => 1,
             'id_state' => 4,
             'price' => 787,
-            'bonus' => 0,
             'id_label'=> 5,
             'track_list' =>
                 '«Tooth and Nail» (Грэмм, Джонс) — 3:54
@@ -523,7 +499,6 @@ class PlateSeeder extends Seeder
             'id_country' => 3,
             'id_state' => 2,
             'price' => 1987,
-            'bonus' => 0,
             'id_label'=> 10,
             'track_list' =>
                 '1	For Calvin (And His Next Two Hitch-Hikers) 7:15
@@ -541,7 +516,6 @@ class PlateSeeder extends Seeder
             'id_country' => 4,
             'id_state' => 2,
             'price' => 1987,
-            'bonus' => 0,
             'id_label'=> 4,
             'track_list' =>
                 '1	Overture And Beginners	3:36
@@ -564,7 +538,6 @@ class PlateSeeder extends Seeder
             'id_country' => 1,
             'id_state' => 2,
             'price' => 1987,
-            'bonus' => 0,
             'id_label'=> 1,
             'track_list' =>
                 'My Love For You (Allan/Roberts/Bennett) 4.01
@@ -593,7 +566,6 @@ class PlateSeeder extends Seeder
                 'id_country' => $arr['id_country'],
                 'id_state' => $arr['id_state'],
                 'price' => $arr['price'],
-                'bonus' => $arr['bonus'],
                 'id_label' => $arr['id_label'],
                 'track_list' => $arr['track_list'],
 

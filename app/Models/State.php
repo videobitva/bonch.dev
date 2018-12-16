@@ -10,4 +10,5 @@ class State extends Model
     {
         return $this->hasMany('App\Plate');
     }
+    protected $table = 'state';
 }

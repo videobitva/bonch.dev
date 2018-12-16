@@ -22,8 +22,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Country extends Model
 {
-    public function Plate()
+    public function plate()
     {
         return $this->hasMany('App\Plate');
     }
+    protected $table = 'countries';
 }

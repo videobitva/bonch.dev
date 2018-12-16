@@ -10,4 +10,5 @@ class Singer extends Model
     {
         return $this->hasMany('App\Plate');
     }
+    protected $table = 'singer';
 }

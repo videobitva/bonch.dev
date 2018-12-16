@@ -16,6 +16,11 @@ class Simple extends Migration
         Schema::table('plates', function (Blueprint $table) {
             $table->string('track_list', 1000)->change();
         });
+        Schema::table('order', function (Blueprint $order) {
+            $order->string('phone_number', 1000)->change();
+            $order->string('total', 1000)->change();
+            $order->string('id_plate', 1000)->change();
+        });
     }
 
     /**
