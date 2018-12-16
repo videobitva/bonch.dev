@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Plate;
+use App\Label;
+use App\Genre;
+use App\Singer;
+use App\State;
+
 use Illuminate\Http\Request;
 
 class PlateController extends Controller
@@ -13,137 +18,80 @@ class PlateController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function LabelOrder(Request $request, $label)
-    {
-        {
-            $result = DB::table('plates')
-                ->join('label', 'plates.id_label', '=', 'label.id')
-                ->join('singer', 'plates.id_singer', '=', 'singer.id')
-                ->join('genre', 'plates.id_genre', '=', 'genre.id')
-                ->select('plates.name','singer.name','genre.name','plate.year_issue','label.name','plates.price' )
-                ->where('label.id', '=', $label)
-                ->get();
-
-        return response()->json($result);
-        }
-    }
-
-    public function GenreOrder(Request $request, $genre)
-    {
-        {
-            $result = DB::table('plates')
-                ->join('label', 'plates.id_label', '=', 'label.id')
-                ->join('singer', 'plates.id_singer', '=', 'singer.id')
-                ->join('genre', 'plates.id_genre', '=', 'genre.id')
-                ->select('plates.name','singer.name','genre.name','plate.year_issue','label.name','plates.price' )
-                ->where('genre.id', '=', $genre)
-                ->get();
-
-            return response()->json($result);
-        }
-    }
-
-    public function CountryOrder(Request $request, $country)
-    {
-        {
-            $result = DB::table('plates')
-                ->join('label', 'plates.id_label', '=', 'label.id')
-                ->join('countries', 'plates.id_country', '=', 'country.id')
-                ->join('singer', 'plates.id_singer', '=', 'singer.id')
-                ->join('genre', 'plates.id_genre', '=', 'genre.id')
-                ->select('plates.name','singer.name','genre.name','plate.year_issue','label.name','plates.price' )
-                ->where('countries.id', '=', $country)
-                ->get();
-
-            return response()->json($result);
-        }
-    }
-
-    public function StateOrder(Request $request, $state)
-    {
-        {
-            $result = DB::table('plates')
-                ->join('label', 'plates.id_label', '=', 'label.id')
-                ->join('state', 'plates.id_state', '=', 'state.id')
-                ->join('singer', 'plates.id_singer', '=', 'singer.id')
-                ->join('genre', 'plates.id_genre', '=', 'genre.id')
-                ->select('plates.name','singer.name','genre.name','plate.year_issue','label.name','plates.price' )
-                ->where('state.id', '=', $state)
-                ->get();
-
-            return response()->json($result);
-        }
-    }
-
-    public function YearIssueOrder(Request $request, $yearissue_1, $yearissue_2)
-    {
-        {
-            $result = DB::table('plates')
-                ->join('label', 'plates.id_label', '=', 'label.id')
-                ->join('state', 'plates.id_state', '=', 'state.id')
-                ->join('singer', 'plates.id_singer', '=', 'singer.id')
-                ->join('genre', 'plates.id_genre', '=', 'genre.id')
-                ->select('plates.name','singer.name','genre.name','plate.year_issue','label.name','plates.price' )
-                ->where('plates.year_issue','=',$yearissue_1, 'between','plates.year_issue','=',$yearissue_2)
-                ->get();
-
-            return response()->json($result);
-        }
-    }
-
-    public function YearPublishingOrder(Request $request, $yearpub_1, $yearpub_2)
-    {
-        {
-            $result = DB::table('plates')
-                ->join('label', 'plates.id_label', '=', 'label.id')
-                ->join('state', 'plates.id_state', '=', 'state.id')
-                ->join('singer', 'plates.id_singer', '=', 'singer.id')
-                ->join('genre', 'plates.id_genre', '=', 'genre.id')
-                ->select('plates.name','singer.name','genre.name','plate.year_issue','label.name','plates.price' )
-                ->where('plates.year_publishing','=',$yearpub_1, 'between','plates.year_publishing','=',$yearpub_2)
-                ->get();
-
-            return response()->json($result);
-        }
-    }
-
-    public function Catalog(Request $request)
-    {
-        {
-            $result = DB::table('plates')
-                ->join('label', 'plates.id_label', '=', 'label.id')
-                ->join('state', 'plates.id_state', '=', 'state.id')
-                ->join('singer', 'plates.id_singer', '=', 'singer.id')
-                ->join('genre', 'plates.id_genre', '=', 'genre.id')
-                ->select('plates.name','singer.name','genre.name','plate.year_issue','label.name','plates.price' )
-                ->orderby('plates.price','ask')
-                ->get();
-
-            return response()->json($result);
+     public function sortCatalog(){
+         $results=Plate::with('Label','Genre','Singer')
+             ->get();
+         foreach ($results as $result){
+             echo $result;
          }
-    }
+     }
 
-    public function CardPlate(Request $request, $id)
-    {
-        {
-            $result = DB::table('plates')
-                ->join('label', 'plates.id_label', '=', 'label.id')
-                ->join('countries', 'plates.id_country', '=', 'country.id')
-                ->join('state', 'plates.id_state', '=', 'state.id')
-                ->join('singer', 'plates.id_singer', '=', 'singer.id')
-                ->join('genre', 'plates.id_genre', '=', 'genre.id')
-                ->update('plates.bonus')
-                ->set('plates.bonus','=','plates.price','*','0.1')
-                ->select('plates.name','singer.name','genre.name','countries.name','plates.year_issue','plates.year_publishing','state.name','plates.price','plates.bonus','plates.track_list' )
-                ->where('plates.id','=',$id)
-                ->get();
-
-            return response()->json($result);
+    public function sortGenre($genre){
+        $results=Plate::with('Label','Genre','Singer')
+            ->where('id_genre',$genre)
+            ->get();
+        foreach ($results as $result){
+            echo $result;
         }
     }
 
+    public function sortCountry($country){
+        $results=Plate::with('Label','Genre','Singer')
+            ->where('id_country',$country)
+            ->get();
+        foreach ($results as $result){
+            echo $result;
+        }
+    }
 
-    public function index()
+    public function sortLabel($label){
+        $results=Plate::with('Label','Genre','Singer')
+            ->where('id_label',$label)
+            ->get();
+        foreach ($results as $result){
+            echo $result;
+        }
+    }
+
+    public function sortState($state){
+        $results=Plate::with('Label','Genre','Singer')
+            ->where('id_state',$state)
+            ->get();
+        foreach ($results as $result){
+            echo $result;
+        }
+    }
+
+    public function yearIssue($year_iss){
+        $results=Plate::with('Label','Genre','Singer')
+            ->where("year_issue", $year_iss)
+            ->get();
+        foreach ($results as $result){
+            echo $result;
+        }
+    }
+
+    public function yearPublishing ($year_pub)
+{
+    $result=Plate::with('Label')
+        ->where('year_publishing', $year_pub)
+        ->get();
+    foreach ($result as $item){
+        echo $item;
+    }
+    /*return response()->json($result);*/
+        }
+
+    public function cardPlate($id){
+        $results=Plate::with('Label','Genre','Singer','State')
+            ->where('id',$id)
+            ->get();
+        foreach ($results as $result){
+            echo $result;
+        }
+    }
+
+   public function index()
     {
         //
     }
