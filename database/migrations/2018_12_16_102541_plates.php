@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlatesTable extends Migration
+class Plates extends Migration
 {
     /**
      * Run the migrations.
@@ -22,16 +22,17 @@ class CreatePlatesTable extends Migration
             $table->integer('year_publishing');
             $table->integer('id_country')->unsigned();
             $table->integer('id_state')->unsigned();
-            $table->decimal('price');
-            $table->integer('id_label');
+            $table->float('price');
+            $table->integer('bonus');
+            $table->integer('id_label')->unsigned();
             $table->string('track_list');
             $table->timestamps();
 
-            /*$table->foreign('id_singer')->references('id')->on('singer')->onDelete('cascade');
+            $table->foreign('id_singer')->references('id')->on('singer')->onDelete('cascade');
             $table->foreign('id_genre')->references('id')->on('genre')->onDelete('cascade');
             $table->foreign('id_country')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('id_state')->references('id')->on('state')->onDelete('cascade');
-            $table->foreign('id_label')->references('id')->on('label')->onDelete('cascade');*/
+            $table->foreign('id_label')->references('id')->on('labels')->onDelete('cascade');
 
         });
     }
@@ -43,6 +44,6 @@ class CreatePlatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plates');
+        //
     }
 }

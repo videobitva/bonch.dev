@@ -23,3 +23,16 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/cart/show', 'CartController@show_me');
 });
 
+Route::get('/plate/genre/{genre}','PlateController@sortGenre');
+Route::get('/plate/country/{country}','PlateController@sortCountry');
+Route::get('/plate/catalog','PlateController@sortCatalog');
+Route::get('/plate/label/{label}','PlateController@sortLabel');
+Route::get('/plate/year/issue/{year_iss}','PlateController@yearIssue');
+Route::get('/plate/year/publishing/{year_pub}','PlateController@yearPublishing');
+Route::get('/plate/card/{id}','PlateController@cardPlate');
+
+
+
+
+
+

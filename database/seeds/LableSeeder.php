@@ -25,7 +25,7 @@ class LableSeeder extends Seeder
     public function run()
     {
         foreach ($this->array as $arr)
-            DB::table('label')->insert(
+            DB::table('labels')->insert(
                 [
                     'name' => $arr['name']
                 ]

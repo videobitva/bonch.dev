@@ -18,7 +18,7 @@ class Cart extends Model
     protected $attributes = [];
 
     public function plate(){
-        return $this->hasMany('App\Plate');
+        return $this->hasMany('Plate::class');
     }
 
     public function addNew($id_plate){

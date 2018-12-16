@@ -8,7 +8,7 @@ class Order extends Model
 {
     public function plate()
     {
-        return $this->hasMany('App\Plate');
+        return $this->hasMany('Plate::class');
     }
 
     public function user()
