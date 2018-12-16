@@ -34,13 +34,13 @@ Route::group(['middleware' => ['web', 'auth', 'verified']], function (){
     Route::get('/order/total', 'OrderController@total');
 });
 
-Route::get('/plate/genre/{genre}','PlateController@sortGenre');
-Route::get('/plate/country/{country}','PlateController@sortCountry');
-Route::get('/plate/catalog','PlateController@sortCatalog');
-Route::get('/plate/label/{label}','PlateController@sortLabel');
-Route::get('/plate/year/issue/{year_iss}','PlateController@yearIssue');
-Route::get('/plate/year/publishing/{year_pub}','PlateController@yearPublishing');
-Route::get('/plate/card/{id}','PlateController@cardPlate');
+Route::get('/plate/genre/','PlateController@sortGenre');
+Route::get('/plate/country/','PlateController@sortCountry');
+Route::get('/plate/catalog/','PlateController@sortCatalog');
+Route::get('/plate/label/','PlateController@sortLabel');
+Route::get('/plate/year/issue/','PlateController@yearIssue');
+Route::get('/plate/year/publishing/','PlateController@yearPublishing');
+Route::get('/plate/card/','PlateController@cardPlate');
 
 
 

@@ -12,6 +12,10 @@ class OrderController extends Controller
 {
     public function order(Request $request){
 
+        if(!$request->session()->get('cart')){
+            return response()->json('Cart is empty');
+        }
+
         $id_user = Auth::id();
 
         $id_country = Country::where('name',$request->get('country'))->firstOrFail()->id;
@@ -42,12 +46,11 @@ class OrderController extends Controller
             User::where('id','=',$id_user)->update(['bonus' => 0]);
         }
         else{
-            User::where('id','=',$id_user)->update(['bonus' =>
-                User::where('id','=',$id_user)
-                    ->getAttribute('bonus') + $request->session()->get('cart')->cart['sum']*0,1]);
+            $new_bonus = User::where('id','=',$id_user)->get()[0]->bonus + $request->session()->get('cart')->cart['sum']*0.1;
+            User::where('id','=',$id_user)->update(['bonus' => $new_bonus]);
         }
 
-        $request->session()->flush();
+        $request->session()->forget('cart');
 
         return response()->json('Order was successfully made');
     }

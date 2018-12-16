@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Plate;
-use App\Label;
-use App\Genre;
-use App\Singer;
-use App\State;
+use App\Models\Label;
+use App\Models\Genre;
+use App\Models\Singer;
+use App\Models\State;
 
 use Illuminate\Http\Request;
 
@@ -22,73 +22,87 @@ class PlateController extends Controller
          $results=Plate::with('Label','Genre','Singer')
              ->get();
          foreach ($results as $result){
-             echo $result;
+             $data[] = $result;
          }
+         return response()->json($data);
      }
 
-    public function sortGenre($genre){
+    public function sortGenre(Request $request){
+        $genre = $request->get('genre');
         $results=Plate::with('Label','Genre','Singer')
             ->where('id_genre',$genre)
             ->get();
         foreach ($results as $result){
-            echo $result;
+            $data[] = $result;
         }
+        return response()->json($data);
     }
 
-    public function sortCountry($country){
+    public function sortCountry(Request $request){
+        $country = $request->get('country');
         $results=Plate::with('Label','Genre','Singer')
             ->where('id_country',$country)
             ->get();
         foreach ($results as $result){
-            echo $result;
+            $data[] = $result;
         }
+        return response()->json($data);
     }
 
-    public function sortLabel($label){
+    public function sortLabel(Request $request){
+        $label = $request->get('label');
         $results=Plate::with('Label','Genre','Singer')
             ->where('id_label',$label)
             ->get();
         foreach ($results as $result){
-            echo $result;
+            $data[] = $result;
         }
+        return response()->json($data);
     }
 
-    public function sortState($state){
+    public function sortState(Request $request){
+        $state = $request->get('state');
         $results=Plate::with('Label','Genre','Singer')
             ->where('id_state',$state)
             ->get();
         foreach ($results as $result){
-            echo $result;
+            $data[] = $result;
         }
+        return response()->json($data);
     }
 
-    public function yearIssue($year_iss){
+    public function yearIssue(Request $request){
+        $year_iss = $request->get('year_iss');
         $results=Plate::with('Label','Genre','Singer')
             ->where("year_issue", $year_iss)
             ->get();
         foreach ($results as $result){
-            echo $result;
+            $data[] = $result;
         }
+        return response()->json($data);
     }
 
-    public function yearPublishing ($year_pub)
-{
-    $result=Plate::with('Label')
-        ->where('year_publishing', $year_pub)
-        ->get();
-    foreach ($result as $item){
-        echo $item;
-    }
-    /*return response()->json($result);*/
+    public function yearPublishing (Request $request){
+        $year_pub = $request->get('year_pub');
+        $results=Plate::with('Label')
+            ->where('year_publishing', $year_pub)
+            ->get();
+        foreach ($results as $result){
+            $data[] = $result;
         }
+        return response()->json($data);
+        /*return response()->json($result);*/
+    }
 
-    public function cardPlate($id){
+    public function cardPlate(Request $request){
+        $id = $request->get('id');
         $results=Plate::with('Label','Genre','Singer','State')
             ->where('id',$id)
             ->get();
         foreach ($results as $result){
-            echo $result;
+            $data[] = $result;
         }
+        return response()->json($data);
     }
 
    public function index()
